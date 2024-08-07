@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        span{
+            font-size: xx-large;
+        }
+        button {
+            padding: 5%;
+        }
+        #Clk {
+            font-size: 1.5rem;
+        }
+        #Clk:hover {
+            transition: all 0.69s ease-out;
+            transition-delay: 0.5s;
+            text-decoration: none;
+            font-size: 1.3rem;
+            color: rgb(153,153,226);
+            cursor: pointer;
+        }
+        #stopWatch {
+            font-size: 1.5rem;
+        }
+        #stopWatch:hover {
+            transition: all 0.69s ease-out;
+            transition-delay: 0.5s;
+            text-decoration: none;
+            font-size: 1.3rem;
+            color: rgb(153,153,226);
+            cursor: pointer;
+        }
+        #btnBlock {
+            display: flex;
+            margin: 10%;
+            margin-left: 10px;
+            margin-right: 10px;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        #bottomNav {
+            height: 60px;
+            background-color: #13d6d6;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stop Watch</h1>
+    <div>
+        <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+    </div>
+    <div id="btnBlock">
+        <button onclick="start()">Start</button>
+        <button onclick="stop()">Stop</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+    <div id="bottomNav">
+        <div id="Clk" onclick="nav()">
+            <p><b>Clock</b></p>
+        </div>
+        <div id="stopWatch">
+            <p><b>Stop Watch</b></p>
+        </div>
+    </div>
+    <script>
+        var intervalId;
+        var elapsedSeconds = 0;
+
+        function updateDisplay() {
+            var hours = Math.floor(elapsedSeconds / 3600);
+            var minutes = Math.floor((elapsedSeconds % 3600) / 60);
+            var seconds = elapsedSeconds % 60;
+
+            document.getElementById('hours').innerHTML = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerHTML = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerHTML = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        function start() {
+            if (!intervalId) {
+                intervalId = setInterval(function () {
+                    elapsedSeconds++;
+                    updateDisplay();
+                }, 1000);
+            }
+        }
+
+        function stop() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        function reset() {
+            stop();
+            elapsedSeconds = 0;
+            updateDisplay();
+        }
+
+        function nav() {
+            window.location.assign('digitalclk.html');
+        }
+    </script>
+</body>
+</html>

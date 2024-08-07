@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            font-size: xx-large;
+        }
+        #Clk{
+        font-size: 1.5rem;
+    }
+    
+        #Clk :hover{
+        transition: all 0.69s ease-out;
+        transition-delay: 0.5s;
+        text-decoration: none;
+        font-size: 1.3rem;
+        color: rgb(153,153,226);
+        cursor: pointer;
+    }
+    #stopWatch{
+        font-size: 1.5rem;
+    }
+    #stopWatch :hover{
+        transition: all 0.69s ease-out;
+        transition-delay: 0.5s;
+        text-decoration: none;
+        font-size: 1.3rem;
+        color: rgb(153,153,226);
+        cursor: pointer;
+    }
+            #btnBlock{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background-color: #0c5586;
+            }
+            #bottomNav{
+            height: 60px;
+            background-color: #13d6d6;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            justify-content: space-evenly;
+    }
+        </style>
+</head>
+<body>
+    <h1>Clock</h1>
+    <div>
+        <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+    </div>
+    <footer>
+        <div id="bottomNav">
+            <div id="Clk">
+                <p><b>Clock</b></p>
+            </div>
+            <div id="stopWatch" onclick="nav()">
+                <p><b>Stop Watch</b></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        setInterval(function () {
+            var d = new Date();
+            var hour = d.getHours();
+            var minutes = d.getMinutes();
+            var seconds = d.getSeconds();
+
+            document.getElementById('hours').innerHTML = hour < 10 ? '0' + hour : hour;
+            document.getElementById('minutes').innerHTML = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerHTML = seconds < 10 ? '0' + seconds : seconds;
+
+            console.log(document.getElementById('hours').innerHTML);
+            console.log(document.getElementById('minutes').innerHTML);
+            console.log(document.getElementById('seconds').innerHTML);
+        }, 1000);
+
+        function nav() {
+            window.location.assign('stopWatch.html');
+        }
+    </script>
+</body>
+</html>
